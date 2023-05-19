@@ -23,14 +23,18 @@
       <label for="name">Name:</label>
       <input type="text" id="name" required><br><br>
       
-      <label for="room">Room:</label>
-      <input type="text" id="room" required><br><br>
-      
       <label for="date">Date:</label>
       <input type="date" id="date" required><br><br>
       
       <label for="time">Time:</label>
       <input type="time" id="time" required><br><br>
+      
+      <label for="roomType">Room Type:</label>
+      <select id="roomType">
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+      </select><br><br>
       
       <input type="submit" value="Book Classroom">
     </form>
@@ -54,13 +58,13 @@
       
       // Get the input values
       var name = document.getElementById('name').value;
-      var room = document.getElementById('room').value;
       var date = document.getElementById('date').value;
       var time = document.getElementById('time').value;
+      var roomType = document.getElementById('roomType').value;
       
       // Create a new booking entry
       var bookingEntry = document.createElement('p');
-      bookingEntry.textContent = "Booking confirmed for " + name + " in " + room + " on " + date + " at " + time;
+      bookingEntry.textContent = "Booking confirmed for " + name + " on " + date + " at " + time + " in a " + roomType + " room.";
       
       // Append the booking entry to the booking list
       bookingList.appendChild(bookingEntry);
