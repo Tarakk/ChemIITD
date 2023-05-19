@@ -51,6 +51,18 @@
     // Get the booking list element
     var bookingList = document.getElementById('bookingList');
     
+    // Load stored bookings on page load
+    window.addEventListener('load', function() {
+      var bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+      
+      // Display stored bookings
+      for (var i = 0; i < bookings.length; i++) {
+        var bookingEntry = document.createElement('p');
+        bookingEntry.textContent = bookings[i];
+        bookingList.appendChild(bookingEntry);
+      }
+    });
+    
     // Add event listener for form submission
     bookingForm.addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent form submission
@@ -62,11 +74,17 @@
       var roomType = document.getElementById('roomType').value;
       
       // Create a new booking entry
-      var bookingEntry = document.createElement('p');
-      bookingEntry.textContent = "Booking confirmed for " + name + " on " + date + " at " + time + " in a " + roomType + " room.";
+      var bookingEntry = "Booking confirmed for " + name + " on " + date + " at " + time + " in a " + roomType + " room.";
       
       // Append the booking entry to the booking list
-      bookingList.appendChild(bookingEntry);
+      var bookingEntryElement = document.createElement('p');
+      bookingEntryElement.textContent = bookingEntry;
+      bookingList.appendChild(bookingEntryElement);
+      
+      // Store the booking entry
+      var bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+      bookings.push(bookingEntry);
+      localStorage.setItem('bookings', JSON.stringify(bookings));
       
       // Clear the form inputs
       bookingForm.reset();
