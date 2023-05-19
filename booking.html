@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Classroom Booking</title>
+  <style>
+    .booking-form {
+      margin-bottom: 20px;
+    }
+    
+    .booking-response {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Classroom Booking</h1>
+  
+  <div class="booking-form">
+    <h3>Booking Form</h3>
+    <form id="bookingForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required><br><br>
+      
+      <label for="date">Date:</label>
+      <input type="date" id="date" required><br><br>
+      
+      <label for="time">Time:</label>
+      <input type="time" id="time" required><br><br>
+      
+      <input type="submit" value="Book Classroom">
+    </form>
+  </div>
+  
+  <div class="booking-response">
+    <h3>Booking Response</h3>
+    <div id="bookingList"></div>
+  </div>
+  
+  <script>
+    // Get the form element
+    var bookingForm = document.getElementById('bookingForm');
+    
+    // Get the booking list element
+    var bookingList = document.getElementById('bookingList');
+    
+    // Add event listener for form submission
+    bookingForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+      
+      // Get the input values
+      var name = document.getElementById('name').value;
+      var date = document.getElementById('date').value;
+      var time = document.getElementById('time').value;
+      
+      // Create a new booking entry
+      var bookingEntry = document.createElement('p');
+      bookingEntry.textContent = "Booking confirmed for " + name + " on " + date + " at " + time;
+      
+      // Append the booking entry to the booking list
+      bookingList.appendChild(bookingEntry);
+      
+      // Clear the form inputs
+      bookingForm.reset();
+    });
+  </script>
+</body>
+</html>
